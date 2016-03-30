@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-4relative [%thread] %-5level	%logger{35}:%line - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<appender name="dailyRollingFileAppender"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>/var/local/consoleWebApi/logFile.log</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>/var/local/consoleWebApi/logFile.%d{yyyy-MM-dd_HH}.log
+			</FileNamePattern>
+			<maxHistory>48</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>
+			%d{yyyy-MM-dd HH:mm:ss} %-4relative [%thread] %-5level	%logger{35}:%line - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+	
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="dailyRollingFileAppender" />
+	</root>
+</configuration>  
