@@ -1,6 +1,7 @@
 package com.xyy.mybatis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,6 +14,7 @@ public class App {
 	@Autowired
 	private TUserService tUserService;
 	@RequestMapping("/user/{id}")
+	@Transactional
 	public TUser getUser(@PathVariable("id") Integer id) {
 		return tUserService.getUserById(id);
 	}
